@@ -1,13 +1,13 @@
+import { useContext } from 'react';
+
+import { TodoContext } from './_app';
+
 import type { NextPage } from 'next';
-import type { Dispatch, SetStateAction } from 'react';
 import type { Todo } from 'src/types';
 
-type PropsType = {
-  todos: Todo[];
-  setTodos: Dispatch<SetStateAction<Todo[]>>;
-};
+const Home: NextPage = () => {
+  const { todos, setTodos } = useContext(TodoContext);
 
-const Home: NextPage<PropsType> = ({ todos, setTodos }) => {
   const toggleIsDone = (id: Todo['id']) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) => {

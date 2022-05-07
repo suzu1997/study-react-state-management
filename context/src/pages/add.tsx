@@ -1,12 +1,12 @@
+import { ComponentProps, useContext } from 'react';
+
+import { TodoContext } from './_app';
+
 import type { NextPage } from 'next';
-import type { ComponentProps, Dispatch, SetStateAction } from 'react';
-import type { Todo } from 'src/types';
 
-type PropsType = {
-  setTodos: Dispatch<SetStateAction<Todo[]>>;
-};
+const Add: NextPage = () => {
+  const { setTodos } = useContext(TodoContext);
 
-const Add: NextPage<PropsType> = ({ setTodos }) => {
   // NOTE: 制御されたコンポーネントと非制御コンポーネントの概念
   // 制御されたコンポーネント... useStateとonChangeを用いて管理
   // 非制御コンポーネント... formタグとhandleSubmitを用いて管理
