@@ -1,11 +1,9 @@
-import { useContext } from 'react';
-
-import { TodosContext } from 'src/state/todos';
+import { useTodos } from 'src/hooks/useTodos';
 
 import type { FC } from 'react';
 
 export const TodoCounter: FC = () => {
-  const { todos } = useContext(TodosContext);
+  const todos = useTodos();
 
   return <h2>TODO: {todos.length}件</h2>;
 };

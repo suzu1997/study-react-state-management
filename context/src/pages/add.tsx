@@ -1,24 +1,18 @@
-import { ComponentProps, useContext } from 'react';
+import { useTodosDispatch } from 'src/hooks/useTodosDispatch';
 
-import { TodosContext } from 'src/state/todos';
-
+import type { ComponentProps } from 'react';
 import type { NextPage } from 'next';
 
 const Add: NextPage = () => {
-  const { setTodos } = useContext(TodosContext);
+  const { addTodo } = useTodosDispatch();
 
   // NOTE: 制御されたコンポーネントと非制御コンポーネントの概念
   // 制御されたコンポーネント... useStateとonChangeを用いて管理
   // 非制御コンポーネント... formタグとhandleSubmitを用いて管理
   const handleSubmit: ComponentProps<'form'>['onSubmit'] = (e) => {
     e.preventDefault(); // フォームのデフォルト動作をキャンセル
-    const text = e.currentTarget.text.value;
-
-    setTodos((prevTodos) => {
-      const id = prevTodos.length + 1;
-      const newTodo = { id, title: text, isDone: false };
-      return [...prevTodos, newTodo];
-    });
+    const title = e.currentTarget.text.value;
+    addTodo(title);
 
     e.currentTarget.reset(); // formタグのリセット機能
   };

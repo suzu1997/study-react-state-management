@@ -1,23 +1,11 @@
-import { useContext } from 'react';
-
-import { TodosContext } from 'src/state/todos';
+import { useTodosDispatch } from 'src/hooks/useTodosDispatch';
+import { useTodos } from 'src/hooks/useTodos';
 
 import type { NextPage } from 'next';
-import type { Todo } from 'src/types';
 
 const Home: NextPage = () => {
-  const { todos, setTodos } = useContext(TodosContext);
-
-  const toggleIsDone = (id: Todo['id']) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isDone: !todo.isDone };
-        }
-        return todo;
-      })
-    );
-  };
+  const todos = useTodos();
+  const { toggleIsDone } = useTodosDispatch();
 
   return (
     <div>
