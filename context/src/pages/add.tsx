@@ -1,11 +1,11 @@
 import { ComponentProps, useContext } from 'react';
 
-import { TodoContext } from './_app';
+import { TodosContext } from 'src/state/todos';
 
 import type { NextPage } from 'next';
 
 const Add: NextPage = () => {
-  const { setTodos } = useContext(TodoContext);
+  const { setTodos } = useContext(TodosContext);
 
   // NOTE: 制御されたコンポーネントと非制御コンポーネントの概念
   // 制御されたコンポーネント... useStateとonChangeを用いて管理
